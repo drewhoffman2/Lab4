@@ -23,8 +23,10 @@ ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ P
 
 **Drew Individual Graph**
 
+The data shown depicts the relationship between gestation period in days and the weight at birth in ounces. It is then divided between smokers and non-smokers. As you can see from the slope of the regression lines, low birthweight for smoking mothers has a much more pronounced effect on premature babies, those who have spent less than 270 days in the womb. The distribution of points is lower for the smokers section.
+
 ```{r}
-ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_smooth(se = FALSE) + facet_wrap(~smoke)
+ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_point() + geom_smooth(se = FALSE) + facet_wrap(~smoke) 
 ```
 
 **Brandon Individual Graph**
