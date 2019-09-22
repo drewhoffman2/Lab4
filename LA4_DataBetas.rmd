@@ -38,3 +38,11 @@ ggplot(data = babies)+
   geom_smooth(mapping = aes(x = babies$mpregwt, y = babies$bwtoz), se = FALSE, method = 'lm', color = "black")
 ```
 
+**David Individual Graph**
+These data show the relationship between gestation and birth weight. The data suggest a positive relation between the two, indicated by the green line. The data is centered around 270 days, which is when a baby is expected to be born. Also, the plot shows the number of cigarretes smoked among mothers, with lighter shades indicating a greater number of cigarretes smoked. 
+```{r}
+ggplot2::babies
+ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
+  geom_point() +
+  geom_smooth(method = lm, color = "green")
+```
