@@ -38,3 +38,17 @@ ggplot(data = babies)+
   geom_smooth(mapping = aes(x = babies$mpregwt, y = babies$bwtoz), se = FALSE, method = 'lm', color = "black")
 ```
 
+**Burke's Individual Plot**
+```{r, echo=FALSE}
+ggplot(data = babies, mapping=aes(x = bwtoz, y = gestation))+
+  geom_jitter()+facet_wrap(~smoke)+
+  labs(title = "Relationship Between Gestation and Birth Weight For Smokers/Non-Smokers",subtitle= "0 = Never Smokes, 1 = Always Smokes", x = "Gestation Period, Days", y = "Birth Weight, Ounces")
+
+```
+
+
+*My question is fairly straightforward: Is there a difference between birth weight and gestation period for smokers and non-smokers? I decided to look at this graphically, and it seems to me that the largest noticeable difference of these two graphs is that the nonsmoker's data looks like it has a lot tighter spread while the smoker's spread is much wider. Also, birth weight looks similar between the two graphs while the gestation is more varied for the smoker group.*
+
+
+**Team Report**
+I, Burke Parent, decided to use non-default functions that include "Facet_wrap", so I can easily see the difference between smokers and non-smokers. I also created a title, substitle, and axis titles so the it is easier to understand what the graph is representing. I also used "geom_jitter" just in case any data points overlapped eachother. I also contributed to the team effort of the Lab Report by helping to come up with our two overall questions we set out to answer. I also helped in making one of the plots to help answer the one of the overall questions.
