@@ -9,10 +9,11 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r include = FALSE}
 library(tidyverse)
 babies <- read_csv("https://raw.githubusercontent.com/ervance1/Sp2018-Data-Science-repo/master/babies2a.dat")
-babies <- rename(babies, bwtoz = `bwt/oz`) #renaming `bwt/oz` because the "/" sign requires special care
+babies <- rename(babies, bwtoz = 'bwt/oz') #renaming `bwt/oz` because the "/" sign requires special care
+options(warn = -1)
 ```
 
 **Tanner Individual Graph**
@@ -25,3 +26,15 @@ ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ P
 ```{r}
 ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_smooth(se = FALSE) + facet_wrap(~smoke)
 ```
+
+**Brandon Individual Graph**
+```{r}
+babies$Premature <- as.numeric(babies$Premature)
+babies$Premature <- as.factor(babies$Premature)
+ggplot(data = babies)+
+  geom_point(mapping = aes(x = babies$mpregwt, y = babies$bwtoz, color = babies$Premature))+
+  theme(legend.position = "bottom")+
+  guides(color = guide_legend(nrow = 1, override.aes = list(size = 2)))+
+  geom_smooth(mapping = aes(x = babies$mpregwt, y = babies$bwtoz), se = FALSE, method = 'lm', color = "black")
+```
+
