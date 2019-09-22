@@ -19,3 +19,9 @@ babies <- rename(babies, bwtoz = `bwt/oz`) #renaming `bwt/oz` because the "/" si
 ```{r}
 ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)
 ```
+
+**Drew Individual Graph**
+
+```{r}
+ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_smooth(se = FALSE) + facet_wrap(~smoke)
+```
