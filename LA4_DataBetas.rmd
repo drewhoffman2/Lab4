@@ -35,6 +35,7 @@ ggplot(data = babies, mapping = aes(x = gestation, fill = Premature))+
   geom_histogram()+
   facet_wrap(~smoke)
 ```
+
 **Analysis of Premature Births**
 This is a histogram of gestation age between smokers and non smokers, the Surgeon General's first assertion that "Mothers who smoke have increased rates of premature delivery" is not supported. There is little to no difference between a mother having smoked and having not smoked and the baby's delivery date. 
 
@@ -113,6 +114,7 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
   geom_point() +
   geom_smooth(method = lm, color = "green")
 ```
+
 **Burke's Individual Plot**
 My question is fairly straightforward: Is there a difference between birth weight and gestation period for smokers and non-smokers? I decided to look at this graphically, and it seems to me that the largest noticeable difference of these two graphs is that the nonsmoker's data looks like it has a lot tighter spread while the smoker's spread is much wider. Also, birth weight looks similar between the two graphs while the gestation is more varied for the smoker group.
 ```{r, echo=FALSE}
@@ -123,8 +125,13 @@ ggplot(data = babies, mapping=aes(x = bwtoz, y = gestation))+
 ```
 
 **6. Who Did What:**
+
 Burke - Team plot one
+
 David -  Overall Questions
+
 Tanner - Recommendation
+
 Drew - Preliminary question
+
 Brandon - Formatting, Merge Fixes, Team plot two
