@@ -94,6 +94,7 @@ ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_point() + 
 
 **Brandon Individual Graph**
 
+I created a scatter plot of a mother's weight at pregnancy and a babies weight at pregnancy to distinguish if a heavier birth weight correlated to a heavier baby at birth, I uesd geom_point and geom_smooth to create this scatter plot with a regression line. I also converted premature into a boolean using as.factor, this allowed me to graph premature by color and not as a scale. I then used guides and theme to fix up the legend. It is seen that just because a baby is premature it does not have to be underweight and there can be underweight babies born during normal gestation periods.
 ```{r}
 babies$Premature <- as.numeric(babies$Premature)
 babies$Premature <- as.factor(babies$Premature)
