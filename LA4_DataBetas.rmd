@@ -34,6 +34,28 @@ When analyzing a set of data it is important to ensure that it comes from a cred
 
 **4. Preliminary Question:**
 
+Which variables are similar and different between smokers and non-smokers?
+
+In this bar graph, there are two groups of mothers, non-smokers (0) and smokers (1). They are categorized by age at the termination of the pregnancy. As you can see, the mother's age tends to be higher for smokers as opposed to non-smokers. This may be due to the fact that a younger person has a lower chance of having already picked up the habit of smoking than an older person has. 
+
+```{r}
+ggplot(data = babies, mapping = aes(x = mage)) + geom_bar() + facet_wrap(~smoke)
+```
+
+In this scatterplot, the x-axis is labeled with the mother's height and the y-axis is labeled with the mother's weight. The two groups represent non-smokers (0) and smokers (1). As you may see, smokers tend to have a slightly lower body weight than non-smokers at the same height. This is most likely an effect of smoking cigarettes and may be an indication or hidden variable for why smokers tend to give birth to babies with lower birth weight.
+
+```{r}
+ggplot(data = babies, mapping = aes(x = mht, y = mpregwt)) + geom_point() + facet_wrap(~smoke) + geom_smooth()
+```
+
+These two bar graphs are again divided between non-smokers(0) and smokers(1). The categorization is by income and as you can see, the income distributions are farily similar to each other and are within the error. This is an example of a variable that is similar between the two groups and will not lead to hidden effects on our results.
+
+```{r}
+ggplot(data = babies, mapping = aes(x = inc)) + geom_bar() + facet_wrap(~smoke)
+```
+
+In conclusion, there are 2 variables that may be relevantly different between smokers and non-smokers to keep in mind. Smokers are on average smaller in weight and older in age. Regardless of smoking, the weight and age of the mother have significant impacts on the child's wellbeing and dimensions at birth. These may be hidden influences in our conclusions for if smoking leads to low birth weight in babies. Other examples of data points that may not be in the data set but could influence results may be whether or not the mother was exposed to second hand smoke, history of eating disorders, history of mental illness, and biological factors such as genetics.
+
 
 **5. Individual Graphs:**
 
@@ -72,3 +94,4 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
 
 **6. Who Did What:**
 David -  1. Overall Questions
+Drew - 4. Preliminary question
