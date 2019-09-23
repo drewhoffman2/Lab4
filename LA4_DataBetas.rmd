@@ -30,7 +30,7 @@ When analyzing a set of data it is important to ensure that it comes from a cred
 
 
 **3. Recommendation:**
-
+Based on the data and plots below, our understanding is that smoking likely has a strong effect on the weight of a mother, as well as the gestational period and birth weight of a baby. Smokers are also typically older in age. With this understanding as well as the knowledge that the age of the mother tends to have some effects of the health of a baby, our recommendation is that prospective mothers cut back or quit smoking entirely before or early in their pregnancy.
 
 **4. Preliminary Question:**
 
@@ -60,8 +60,9 @@ In conclusion, there are 2 variables that may be relevantly different between sm
 **5. Individual Graphs:**
 
 **Tanner Individual Graph**
+This plot shows the relationship between the number of cigarettes smoked per day by the mother (past or current smoker) and the birth weight in ounces of the baby, separated by the babies born prematurely (1) or on time (0). We can see from the regression lines that increased smoking is correlated with lower birth weight, especially so in babies born prematurely.
 ```{r}
-ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)
+ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)+ geom_smooth(method='lm', se=FALSE)
 ```
 
 **Drew Individual Graph**
@@ -88,7 +89,6 @@ ggplot(data = babies)+
 These data show the relationship between gestation and birth weight. The data suggest a positive relation between the two, indicated by the green line. The data is centered around 270 days, which is when a baby is expected to be born. Also, the plot shows the number of cigarretes smoked among mothers, with lighter shades indicating a greater number of cigarretes smoked. 
 
 ```{r}
-ggplot2::babies
 ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
   geom_point() +
   geom_smooth(method = lm, color = "green")
@@ -97,4 +97,5 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
 **6. Who Did What:**
 
 David -  1. Overall Questions
+Tanner - 3. Recommendation
 Drew - 4. Preliminary question
