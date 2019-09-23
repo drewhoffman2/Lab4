@@ -16,18 +16,85 @@ babies <- rename(babies, bwtoz = 'bwt/oz') #renaming `bwt/oz` because the "/" si
 options(warn = -1)
 ```
 
-**Tanner Individual Graph**
+**1. Overall Questions:**
+1. Does smoking have an effect on gestational length?
+While this question is pretty basic, it’s important to establish a basis for what we hope to analyze. Asking this question can help guide us towards what we want to show using data.
+
+2. Could there be an underlying variable that is related to gestational length and smoking?
+As data scientists we want to consider that there could be other related factors that aren’t immediately apparent in the data.
+
+3. Where are these data coming from?    
+When analyzing a set of data it is important to ensure that it comes from a credible source. We also want to consider when the survey was done and how the survey for the data was conducted (in case of bias).
+
+**2. Team Plots:**
+
 ```{r}
-ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)
+babies$Premature <- as.numeric(babies$Premature)
+babies$Premature <- as.factor(babies$Premature)
+ggplot(data = babies, mapping = aes(x = gestation, fill = Premature))+
+  geom_histogram()+
+  facet_wrap(~smoke)
+```
+**Analysis of Premature Births**
+This is a histogram of gestation age between smokers and non smokers, the Surgeon General's first assertion that "Mothers who smoke have increased rates of premature delivery" is not supported. There is little to no difference between a mother having smoked and having not smoked and the baby's delivery date. 
+
+```{r}
+babies$smoke <- as.numeric(babies$smoke)
+babies$smoke <- as.factor(babies$smoke)
+ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz, color = smoke))+
+  geom_point()
+```
+
+**Analysis of birth weights at gestational ages**
+This is a scatter plot of the birth weights against gestational ages of babies seperated by color of smoking and non smoking mothers. The Surgeon General's second assertion that "newborns of mothers who smoke have smaller birth weights at every gestational age" is not supported. The data overlaps between smokers and non smokers and no distinction that birth weights are smaller at every gestational age can be seen by the scatter plot.
+
+**3. Recommendation:**
+Based on the data and plots below, our understanding is that smoking likely has a strong effect on the weight of a mother, as well as the gestational period and birth weight of a baby. Smokers are also typically older in age. With this understanding as well as the knowledge that the age of the mother tends to have some effects of the health of a baby, our recommendation is that prospective mothers cut back or quit smoking entirely before or early in their pregnancy.
+
+**4. Preliminary Question:**
+
+Which variables are similar and different between smokers and non-smokers?
+
+In this bar graph, there are two groups of mothers, non-smokers (0) and smokers (1). They are categorized by age at the termination of the pregnancy. As you can see, the mother's age tends to be higher for smokers as opposed to non-smokers. This may be due to the fact that a younger person has a lower chance of having already picked up the habit of smoking than an older person has. 
+
+```{r}
+ggplot(data = babies, mapping = aes(x = mage)) + geom_bar() + facet_wrap(~smoke)
+```
+
+In this scatterplot, the x-axis is labeled with the mother's height and the y-axis is labeled with the mother's weight. The two groups represent non-smokers (0) and smokers (1). As you may see, smokers tend to have a slightly lower body weight than non-smokers at the same height. This is most likely an effect of smoking cigarettes and may be an indication or hidden variable for why smokers tend to give birth to babies with lower birth weight.
+
+```{r}
+ggplot(data = babies, mapping = aes(x = mht, y = mpregwt)) + geom_point() + facet_wrap(~smoke) + geom_smooth()
+```
+
+These two bar graphs are again divided between non-smokers(0) and smokers(1). The categorization is by income and as you can see, the income distributions are farily similar to each other and are within the error. This is an example of a variable that is similar between the two groups and will not lead to hidden effects on our results.
+
+```{r}
+ggplot(data = babies, mapping = aes(x = inc)) + geom_bar() + facet_wrap(~smoke)
+```
+
+In conclusion, there are 2 variables that may be relevantly different between smokers and non-smokers to keep in mind. Smokers are on average smaller in weight and older in age. Regardless of smoking, the weight and age of the mother have significant impacts on the child's wellbeing and dimensions at birth. These may be hidden influences in our conclusions for if smoking leads to low birth weight in babies. Other examples of data points that may not be in the data set but could influence results may be whether or not the mother was exposed to second hand smoke, history of eating disorders, history of mental illness, and biological factors such as genetics.
+
+
+**5. Individual Graphs:**
+
+**Tanner Individual Graph**
+This plot shows the relationship between the number of cigarettes smoked per day by the mother (past or current smoker) and the birth weight in ounces of the baby, separated by the babies born prematurely (1) or on time (0). We can see from the regression lines that increased smoking is correlated with lower birth weight, especially so in babies born prematurely.
+```{r}
+ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)+ geom_smooth(method='lm', se=FALSE)
 ```
 
 **Drew Individual Graph**
 
+The data shown depicts the relationship between gestation period in days and the weight at birth in ounces. It is then divided between smokers and non-smokers. As you can see from the slope of the regression lines, low birthweight for smoking mothers has a much more pronounced effect on premature babies, those who have spent less than 270 days in the womb. The distribution of points is lower for the smokers section.
+
 ```{r}
-ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_smooth(se = FALSE) + facet_wrap(~smoke)
+ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_point() + geom_smooth(se = FALSE) + facet_wrap(~smoke) 
 ```
 
 **Brandon Individual Graph**
+
+I created a scatter plot of a mother's weight at pregnancy and a babies weight at pregnancy to distinguish if a heavier birth weight correlated to a heavier baby at birth, I uesd geom_point and geom_smooth to create this scatter plot with a regression line. I also converted premature into a boolean using as.factor, this allowed me to graph premature by color and not as a scale. I then used guides and theme to fix up the legend. It is seen that just because a baby is premature it does not have to be underweight and there can be underweight babies born during normal gestation periods.
 ```{r}
 babies$Premature <- as.numeric(babies$Premature)
 babies$Premature <- as.factor(babies$Premature)
@@ -40,9 +107,25 @@ ggplot(data = babies)+
 
 **David Individual Graph**
 These data show the relationship between gestation and birth weight. The data suggest a positive relation between the two, indicated by the green line. The data is centered around 270 days, which is when a baby is expected to be born. Also, the plot shows the number of cigarretes smoked among mothers, with lighter shades indicating a greater number of cigarretes smoked. 
+
 ```{r}
-ggplot2::babies
 ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
   geom_point() +
   geom_smooth(method = lm, color = "green")
 ```
+**Burke's Individual Plot**
+```{r, echo=FALSE}
+ggplot(data = babies, mapping=aes(x = bwtoz, y = gestation))+
+  geom_jitter()+facet_wrap(~smoke)+
+  labs(title = "Relationship Between Gestation and Birth Weight For Smokers/Non-Smokers",subtitle= "0 = Never Smokes, 1 = Always Smokes", x = "Gestation Period, Days", y = "Birth Weight, Ounces")
+
+```
+
+
+*My question is fairly straightforward: Is there a difference between birth weight and gestation period for smokers and non-smokers? I decided to look at this graphically, and it seems to me that the largest noticeable difference of these two graphs is that the nonsmoker's data looks like it has a lot tighter spread while the smoker's spread is much wider. Also, birth weight looks similar between the two graphs while the gestation is more varied for the smoker group.*
+
+**6. Who Did What:**
+
+David -  1. Overall Questions
+Tanner - 3. Recommendation
+Drew - 4. Preliminary question
