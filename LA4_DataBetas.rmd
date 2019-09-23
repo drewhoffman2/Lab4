@@ -28,6 +28,25 @@ When analyzing a set of data it is important to ensure that it comes from a cred
 
 **2. Team Plots:**
 
+```{r}
+babies$Premature <- as.numeric(babies$Premature)
+babies$Premature <- as.factor(babies$Premature)
+ggplot(data = babies, mapping = aes(x = gestation, fill = Premature))+
+  geom_histogram()+
+  facet_wrap(~smoke)
+```
+**Analysis of Premature Births**
+This is a histogram of gestation age between smokers and non smokers, the Surgeon General's first assertion that "Mothers who smoke have increased rates of premature delivery" is not supported. There is little to no difference between a mother having smoked and having not smoked and the baby's delivery date. 
+
+```{r}
+babies$smoke <- as.numeric(babies$smoke)
+babies$smoke <- as.factor(babies$smoke)
+ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz, color = smoke))+
+  geom_point()
+```
+
+**Analysis of birth weights at gestational ages**
+This is a scatter plot of the birth weights against gestational ages of babies seperated by color of smoking and non smoking mothers. The Surgeon General's second assertion that "newborns of mothers who smoke have smaller birth weights at every gestational age" is not supported. The data overlaps between smokers and non smokers and no distinction that birth weights are smaller at every gestational age can be seen by the scatter plot.
 
 **3. Recommendation:**
 Based on the data and plots below, our understanding is that smoking likely has a strong effect on the weight of a mother, as well as the gestational period and birth weight of a baby. Smokers are also typically older in age. With this understanding as well as the knowledge that the age of the mother tends to have some effects of the health of a baby, our recommendation is that prospective mothers cut back or quit smoking entirely before or early in their pregnancy.
