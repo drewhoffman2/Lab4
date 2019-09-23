@@ -114,6 +114,7 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
   geom_smooth(method = lm, color = "green")
 ```
 **Burke's Individual Plot**
+My question is fairly straightforward: Is there a difference between birth weight and gestation period for smokers and non-smokers? I decided to look at this graphically, and it seems to me that the largest noticeable difference of these two graphs is that the nonsmoker's data looks like it has a lot tighter spread while the smoker's spread is much wider. Also, birth weight looks similar between the two graphs while the gestation is more varied for the smoker group.
 ```{r, echo=FALSE}
 ggplot(data = babies, mapping=aes(x = bwtoz, y = gestation))+
   geom_jitter()+facet_wrap(~smoke)+
@@ -121,11 +122,9 @@ ggplot(data = babies, mapping=aes(x = bwtoz, y = gestation))+
 
 ```
 
-
-*My question is fairly straightforward: Is there a difference between birth weight and gestation period for smokers and non-smokers? I decided to look at this graphically, and it seems to me that the largest noticeable difference of these two graphs is that the nonsmoker's data looks like it has a lot tighter spread while the smoker's spread is much wider. Also, birth weight looks similar between the two graphs while the gestation is more varied for the smoker group.*
-
 **6. Who Did What:**
-
-David -  1. Overall Questions
-Tanner - 3. Recommendation
-Drew - 4. Preliminary question
+Burke - Team plot one
+David -  Overall Questions
+Tanner - Recommendation
+Drew - Preliminary question
+Brandon - Formatting, Merge Fixes, Team plot two
