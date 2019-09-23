@@ -16,6 +16,19 @@ babies <- rename(babies, bwtoz = 'bwt/oz') #renaming `bwt/oz` because the "/" si
 options(warn = -1)
 ```
 
+**1. Overall Questions:**
+
+**2. Team Plots:**
+
+
+**3. Recommendation:**
+
+
+**4. Preliminary Question:**
+
+
+**5. Individual Graphs:**
+
 **Tanner Individual Graph**
 ```{r}
 ggplot(data=babies, mapping=aes(x=number, y=bwtoz))+geom_jitter()+facet_wrap(~ Premature)
@@ -48,3 +61,5 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
   geom_point() +
   geom_smooth(method = lm, color = "green")
 ```
+
+**6. Who Did What:**
