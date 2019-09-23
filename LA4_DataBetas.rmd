@@ -73,6 +73,7 @@ ggplot(data = babies, mapping = aes(x = gestation, y = bwtoz)) + geom_point() + 
 ```
 
 **Brandon Individual Graph**
+
 ```{r}
 babies$Premature <- as.numeric(babies$Premature)
 babies$Premature <- as.factor(babies$Premature)
@@ -85,6 +86,7 @@ ggplot(data = babies)+
 
 **David Individual Graph**
 These data show the relationship between gestation and birth weight. The data suggest a positive relation between the two, indicated by the green line. The data is centered around 270 days, which is when a baby is expected to be born. Also, the plot shows the number of cigarretes smoked among mothers, with lighter shades indicating a greater number of cigarretes smoked. 
+
 ```{r}
 ggplot2::babies
 ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
@@ -93,5 +95,6 @@ ggplot(data = babies, aes(x = gestation, y = bwtoz, color = number)) +
 ```
 
 **6. Who Did What:**
+
 David -  1. Overall Questions
 Drew - 4. Preliminary question
